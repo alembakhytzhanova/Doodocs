@@ -37,7 +37,7 @@ func HomePage(w http.ResponseWriter, r *http.Request) {
 
 func UploadFile(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
-		fmt.Println("negro")
+
 		HandleError(w, http.StatusMethodNotAllowed)
 
 		return
