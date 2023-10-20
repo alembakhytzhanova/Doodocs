@@ -14,8 +14,8 @@ func main() {
 
 	fileServer := http.FileServer(http.Dir("./ui/static"))
 	mux.Handle("/static/", http.StripPrefix("/static/", fileServer))
-	http.HandleFunc("/api/archive/information", ArchiveInformationHandler)
-	http.HandleFunc("/api/archive/files", ArchiveFilesHandler)
+	mux.HandleFunc("/api/archive/information", ArchiveInformationHandler)
+	mux.HandleFunc("/api/archive/files", ArchiveFilesHandler)
 	mux.HandleFunc("/", HomePage)
 	mux.HandleFunc("/upload", UploadFile)
 

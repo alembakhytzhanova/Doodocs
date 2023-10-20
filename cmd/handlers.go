@@ -49,11 +49,11 @@ func UploadFile(w http.ResponseWriter, r *http.Request) {
 	defer file.Close()
 	fmt.Println("file info")
 	fmt.Println("File Name:", handler.Filename)
-	fmt.Println("File Sixe:", handler.Size)
+	fmt.Println("File Size:", handler.Size)
 	fmt.Println("File Type:", handler.Header.Get("Content-Type"))
 	fmt.Println("File Header:", handler.Header)
-
 }
+
 func HandleError(w http.ResponseWriter, num int) {
 	errorData := struct {
 		ErrorNum     int
@@ -159,6 +159,7 @@ func foundMimeType(filename string) string {
 		return "application/octet-stream"
 	}
 }
+
 func ArchiveFilesHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		HandleError(w, http.StatusMethodNotAllowed)
@@ -177,7 +178,7 @@ func ArchiveFilesHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	defer tempFile.Close()
-	//создаем новый зип архив
+	// создаем новый зип архив
 	archive := zip.NewWriter(w)
 	defer archive.Close()
 	// Флаг для определения, был ли добавлен хотя бы один допустимый файл в архив
